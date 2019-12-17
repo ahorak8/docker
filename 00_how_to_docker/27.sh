@@ -1,13 +1,16 @@
-docker service logs --follow $(docker service ps --quiet --filter "name=engineering-bay.1" engineering-bay)
+# Getting ID of first replica:
+value=$(docker service ps -q engineering-bay |sed '1q;d')
+
+# Display real-time logs, using value gotten from above:
+docker service logs --follow "$value"
 
 # Commands needed for this:
 
 # -> 'docker service logs' to get the logs
 # 	** --follow or -f for live logs
 
-# -> 'docker service ps' to access the individual service's identity that we want to log. Need to filter results
+# -> 'docker service ps' to access the individual service's identity that we want to log
 # 	** --quiet or -q only display task IDs
-# 	** --filter or -f filter output based on conditions provided
 
 # Testing: 
 # docker service ps --quiet --filter "name=engineering-bay.1" engineering-bay, should return a single ID
