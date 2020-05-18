@@ -1,11 +1,20 @@
 FROM alpine
+# base image
 
-RUN apk update; apk add vim
+# Installing vim:
+RUN apk update && \
+	apk add vim 
 
-CMD ["vim", "hello_world.c"]
+# Launching vim
+CMD ["vim"]
 
-# BUILDING: docker build ./ -t ex00
-# RUNNING: docker run -it ex00
+# BUILDING: 
+# docker build ./ -t ex00
+
+# RUNNING: 
+# docker run -it --rm ex00
+
 # Note: Make sure Char is running active (docker-machine ls)
 
+# Research Links:
 # https://rominirani.com/docker-tutorial-series-writing-a-dockerfile-ce5746617cd
